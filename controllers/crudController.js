@@ -28,7 +28,6 @@ exports.checkoutHead = async (req, res) => {
         menu_id: req.body.menuId, 
         menu_qty: req.body.menuQty
     }
-
     let result = crudModel.checkoutHead(data);
     result.then(function(result){
         res.json({
