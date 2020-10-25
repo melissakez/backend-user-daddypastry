@@ -1,8 +1,8 @@
 const port = 3002;
-const baseURL = 'localhost';
+const baseURL = "localhost";
 
 module.exports = {
-    port,
-    baseURL,
-    projectDir: __dirname
+  port,
+  baseURL,
+  projectDir: __dirname,
 };
