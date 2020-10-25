@@ -28,13 +28,13 @@ exports.register = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-    let adminID = authModel.Login(req.body.username, bcrypt.Encrypt(req.body.password));
-    adminID.then(function(result){
+    let userID = authModel.Login(req.body.email, req.body.password);
+    userID.then(function(result){
         if (result.length > 0){
             // berhasil login
             let data = {
-                user_id: result[0].id,
-                username: result[0].username
+                user_signin: result[0].id,
+                email: result[0].email
             }
 
             let token = jwt.Encode(data);
@@ -42,14 +42,15 @@ exports.login = async (req, res) => {
             res.json({
                 code: 200,
                 success: true,
+                id: result[0].id,
                 token
             })
         } else {
             // gagal login
             console.log(result);
             res.json({
-                code: 200,
-                success: true
+                code: 500,
+                success: false
             })
         }
     }).catch(function(err){

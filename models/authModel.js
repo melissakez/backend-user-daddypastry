@@ -11,9 +11,9 @@ exports.register = (data) => {
     });
 };
 
-exports.Login = (username, password) => {
+exports.Login = (email, password) => {
     return new Promise(function(resolve, reject) {
-        var sql = `select id, username from admin_login where username = '${username}' and password = '${password}'`;
+        var sql = `select id, email from user_signin where email = '${email}' and password = '${password}'`;
         pool.query(sql, (err, result)=> {
             if (err) reject(err);
 

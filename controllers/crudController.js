@@ -4,6 +4,81 @@ const platform = require('../platform.js');
 var uniqid = require('uniqid');
 var fs = require('fs');
 
+exports.getmenu = async (req, res) => {
+    let result = crudModel.getmenu();
+    result.then(function(result){
+        res.json({
+            status: 200,
+            success: true,
+            return: result
+        });
+    }).catch(function(err){
+        res.json({
+            status: 500,
+            success: false,
+            message: err
+        })
+    })
+}
+
+exports.checkoutHead = async (req, res) => {
+
+    var data = {
+        user_id: req.body.userId, 
+        menu_id: req.body.menuId, 
+        menu_qty: req.body.menuQty
+    }
+
+    let result = crudModel.checkoutHead(data);
+    result.then(function(result){
+        res.json({
+            status: 200,
+            success: true
+        });
+    }).catch(function(err){
+        res.json({
+            status: 500,
+            success: false,
+            message: err
+        })
+    })
+}
+
+// exports.getmenu = async (req, res) => {
+//     let filename;
+//     if(req.files){
+//         var file = req.files.filename;
+//         var extension = req.files.filename.name.split('.');
+//         extension = extension[extension.length - 1];
+//         filename = `${uniqid()}.${extension}`;
+
+//         file.mv(platform.projectDir + "/images/" + filename, function(err){
+//             if(err) console.log(err);
+//         })
+//     }
+
+//     var data = {
+//         name: req.body.name, 
+//         price: req.body.price,
+//         description: req.body.description,
+//         filename
+//     }
+
+//     let result = crudModel.getmenu(data);
+//     result.then(function(result){
+//         res.json({
+//             status: 200,
+//             success: true
+//         });
+//     }).catch(function(err){
+//         res.json({
+//             status: 500,
+//             success: false,
+//             message: err
+//         })
+//     })
+// }
+
 // exports.insert = async (req, res) => {
 //     let filename;
 //     if(req.files){

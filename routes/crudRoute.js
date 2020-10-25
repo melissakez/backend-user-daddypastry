@@ -5,7 +5,9 @@ const crudController = require('../controllers/crudController.js');
 const authController = require('../controllers/authController');
 
 router.post('/login', authController.login);
-router.post('/register', authController.register);
+router.post('/regis', authController.register);
+router.get('/menu', crudController.getmenu);
+router.post('/checkout', crudController.checkoutHead);
 
 // router.post('/insert', crudController.insert);
 // router.get('/select', crudController.select);
